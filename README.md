@@ -5,19 +5,20 @@ A small desktop app that batch-renders **singing, dancing and instrument-playing
 Instead of editing the workflow by hand for every clip (changing the audio, typing the lyrics into the prompt, setting the duration), you load a workflow once, add your photos and audio files, fill in a few fields per clip, and press **Start**. The app talks to a running ComfyUI instance through its HTTP API and renders the clips one after another.
 
 > Not affiliated with MiniMax or ComfyUI. The app only automates a workflow you already have.
-> The user interface is currently in **Turkish**.
+> The interface is in **English by default** and can be switched to **Turkish** with the language selector in the top-right corner. Your choice is remembered.
 
 ---
 
 ## Features
 
+- **English / Turkish UI** – switch the language at any time; status and log messages follow the selected language.
 - **Batch queue** – add many audio files, they are rendered in order (1, 2, 3, ...).
 - **Automatic duration** – the length of each audio file is read automatically and written into the workflow's duration node. An optional "extra seconds" padding is available.
 - **Three modes, selectable per audio row**
   - 🎤 **Sing** – lip-sync to the vocals; you type the lyrics for each clip.
   - 🎸 **Play an instrument** – you enter the instrument and an optional genre/tempo.
   - 💃 **Dance** – optional dance style/tempo.
-- **Editable prompt templates** – one template per mode, with placeholders such as `{SÖZ}` (lyrics), `{ENSTRÜMAN}` (instrument), `{TÜR_TEMPO}` (genre/tempo) and `{DANS}` (dance style). The template replaces the prompt stored in the workflow file, so you never have to re-save the workflow.
+- **Editable prompt templates** – one template per mode, with placeholders such as `{LYRICS}`, `{INSTRUMENT}`, `{GENRE_TEMPO}` and `{DANCE}`. The template replaces the prompt stored in the workflow file, so you never have to re-save the workflow.
 - **Multiple photos, used in rotation** – add as many photos as you like; clips use them in order and wrap around when they run out.
 - **Automatic resolution** – width/height are computed from each photo's aspect ratio (about 0.4 MP by default, multiples of 32) to avoid the square-crop / face zoom-in problem.
 - **Fast-mode toggle** – switch the Lightning LoRA on or off from the UI.
@@ -139,9 +140,9 @@ If an antivirus flags the `--onefile` build, use `--onedir` instead.
 | Problem | What to check |
 |---|---|
 | Nothing happens when pressing Start | A red message appears next to the buttons (missing workflow, photo, audio or required field). |
-| `Workflow'da 'NNN' ID'li düğüm yok` | A node ID does not exist in your workflow. Fix it under *Advanced: node IDs*. |
-| `/prompt reddetti` | ComfyUI rejected the workflow. Read the message in the log; usually a missing model or an invalid value. |
-| Template error about an unfilled `{FIELD}` | The template contains a placeholder that no field provides. Edit the template. |
+| `Node 'NNN' (...) not found in the workflow` | A node ID does not exist in your workflow. Fix it under *Advanced: node IDs*. |
+| `/prompt rejected` | ComfyUI rejected the workflow. Read the message in the log; usually a missing model or an invalid value. |
+| `Template has unfilled field(s)` | The template contains a placeholder that no field provides. Edit the template. |
 | Window does not open on Windows | Install the Microsoft WebView2 Runtime, or uninstall `pywebview` to use the browser fallback. |
 | Output is square / zoomed on the face | Make sure **automatic resolution** is enabled. |
 
