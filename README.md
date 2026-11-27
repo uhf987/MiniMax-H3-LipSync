@@ -111,19 +111,6 @@ For each clip the app:
 
 ---
 
-## Building a Windows executable
-
-```bash
-pip install flask requests pywebview pyinstaller
-pyinstaller --noconfirm --onefile --windowed --name LipSyncRender sarki_arayuz.py
-```
-
-On Windows you can also just run `exe_yap.bat`. The executable is created in `dist/`. The `outputs` and `webview_data` folders are created next to the `.exe`.
-
-If an antivirus flags the `--onefile` build, use `--onedir` instead.
-
----
-
 ## Tips for better results
 
 - **Use a photo where the whole subject is visible.** For dancing and instrument playing the model has to invent whatever is not in the frame.
